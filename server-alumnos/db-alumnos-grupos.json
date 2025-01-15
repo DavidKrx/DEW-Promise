@@ -1,0 +1,134 @@
+{
+  "alumnos": [
+    {
+      "id": 1,
+      "grupo": "A",
+      "nombre": "Juan"
+    },
+    {
+      "id": 2,
+      "grupo": "A",
+      "nombre": "Eva"
+    },
+    {
+      "id": 3,
+      "grupo": "B",
+      "nombre": "Ana"
+    },
+    {
+      "id": 4,
+      "grupo": "B",
+      "nombre": "Julia"
+    },
+    {
+      "nombre": "pedro",
+      "grupo": "A",
+      "id": 5
+    },
+    {
+      "nombre": "a",
+      "grupo": "B",
+      "id": 6
+    },
+    {
+      "nombre": "a",
+      "grupo": "B",
+      "id": 7
+    },
+    {
+      "nombre": "a",
+      "grupo": "B",
+      "id": 8
+    },
+    {
+      "nombre": "a",
+      "grupo": "B",
+      "id": 9
+    },
+    {
+      "nombre": "pedro",
+      "grupo": "A",
+      "id": 10
+    },
+    {
+      "nombre": "pedro",
+      "grupo": "A",
+      "id": 11
+    },
+    {
+      "nombre": "a",
+      "grupo": "B",
+      "id": 12
+    },
+    {
+      "nombre": "a",
+      "grupo": "B",
+      "id": 13
+    },
+    {
+      "nombre": "a",
+      "grupo": "B",
+      "id": 14
+    },
+    {
+      "nombre": "a",
+      "grupo": "B",
+      "id": 16
+    },
+    {
+      "nombre": "a",
+      "grupo": "B",
+      "id": 17
+    },
+    {
+      "nombre": "a",
+      "grupo": "B",
+      "id": 19
+    },
+    {
+      "nombre": "Juan",
+      "grupo": "B",
+      "id": 20
+    },
+    {
+      "nombre": "a",
+      "grupo": "B",
+      "id": 22
+    },
+    {
+      "nombre": "a",
+      "grupo": "B",
+      "id": 23
+    },
+    {
+      "nombre": "Pedro",
+      "grupo": "C",
+      "id": 24
+    },
+    {
+      "nombre": "Abdul",
+      "grupo": "C",
+      "id": 25
+    },
+    {
+      "nombre": "a",
+      "grupo": "B",
+      "id": 26
+    },
+    {
+      "nombre": "a",
+      "grupo": "B",
+      "id": 27
+    }
+  ],
+  "grupos": [
+    {
+      "id": 1,
+      "grupo": "A"
+    },
+    {
+      "id": 2,
+      "grupo": "B"
+    }
+  ]
+}
