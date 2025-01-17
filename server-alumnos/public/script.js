@@ -1,6 +1,29 @@
 const result=document.getElementById('result');
+const tabla=document.getElementById('tabla');
+fetch('http://localhost:3000/alumnos').then(response=>response.json())
+.then(respuestaFormat=> {
+  jsonData=JSON.stringify(respuestaFormat);
+  result.innerHTML=jsonData;
+  respuestaFormat.map((alumnos) => {
+    //let modongo=`<tr><td>${alumnos.id}</td><td>${alumnos.nombre}</td><td>${alumnos.grupo}</td></tr>`;
+    let id=document.createElement("td");
+    id.textContent=alumnos.id;
 
-fetch('http://localhost:3000/alumnos').then(response=>response.json()).then(respuestaFormat=> result.innerHTML=JSON.stringify(respuestaFormat)).catch(error => {
+    let nombre=document.createElement("td");
+    nombre.textContent=alumnos.nombre;
+
+    let grupo=document.createElement("td");
+    grupo.textContent=alumnos.grupo;
+
+    let tr=document.createElement("tr");
+    tr.append(id);
+    tr.append(nombre);
+    tr.append(grupo);
+
+    tabla.append(tr);
+  });
+})
+.catch(error => {
   console.error(error);
 });
 
@@ -39,6 +62,7 @@ function Update(id,name,grupo){
   })
   .then(respuestaFormat=> console.log(respuestaFormat))
 }
+//Modifica parcialmente el objeto
 function UpdatePath(id,name,grupo){
   let DatosCrear={
     nombre:name,
