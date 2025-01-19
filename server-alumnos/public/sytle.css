@@ -3,18 +3,21 @@
     margin: 0;
     padding: 0;
   }
-.page {
-    width: 80%;
-    justify-content: center;
-    align-items: center;
-}
-table{
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    align-content: center;
-    border:1px solid black;
-    border-collapse: collapse;
-}
-td,th{
-    border:1px solid black;}
+  body {
+    text-align: center;}
+    table {
+      margin: auto;
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 40%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    thead tr {
+      background-color: #dddddd;
+    }

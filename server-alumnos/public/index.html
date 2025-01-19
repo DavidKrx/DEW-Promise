@@ -7,30 +7,48 @@
     <link rel="stylesheet" href="sytle.css">
 </head>
 <body>
-    <h1>DEW-Server alumnos-grupos</h1>
-    <div class="page">
-        <table>
-            <thead>        
-                <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Grupo</th>
-              </tr></thead>
-            <tbody id="tabla">
-    
-            </tbody>
-    
-        </table>
-        <p id="result">Resultado</p>
+    <h1>Lista de Alumnos</h1>
+    <div class="all">
+    <table border="1" id="tabla">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Grupo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+      
+      </tbody>
+    </table>
+  
+    <div class="actions">
+    <h2>Crear Alumno</h2>
+    <form id="formCrear">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" required>
+      <label for="grupo">Grupo:</label>
+      <select id="grupo" required>
+        <!-- Las opciones de los grupos se cargarán aquí -->
+      </select>
+      <button type="submit">Crear</button>
+    </form>
+  
+    <!-- Formulario de Editar Alumno -->
+    <h2>Editar Alumno</h2>
+    <form id="formEditar" style="display: none;">
+      <label for="editNombre">Nombre:</label>
+      <input type="text" id="editNombre" required>
+      <label for="editGrupo">Grupo:</label>
+      <select id="editGrupo" required>
+        <!-- Las opciones de los grupos se cargarán aquí -->
+      </select>
+      <input type="hidden" id="editId">
+      <button type="submit">Actualizar</button>
+    </form>
     </div>
-
+</div>
     <script src="script.js"></script>
-    <!--
-    <script>Create()</script>
-    <script>Update(20,'Juan','B')</script>
-    <script>Delete(21)</script>
-    -->
-
- 
 </body>
 </html>

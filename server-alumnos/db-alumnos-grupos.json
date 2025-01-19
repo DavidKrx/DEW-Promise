@@ -1,16 +1,6 @@
 {
   "alumnos": [
     {
-      "id": 1,
-      "grupo": "A",
-      "nombre": "Juan"
-    },
-    {
-      "id": 2,
-      "grupo": "A",
-      "nombre": "Eva"
-    },
-    {
       "id": 3,
       "grupo": "B",
       "nombre": "Ana"
@@ -102,16 +92,16 @@
     },
     {
       "nombre": "Pedro",
-      "grupo": "C",
+      "grupo": "B",
       "id": 24
     },
     {
       "nombre": "Abdul",
-      "grupo": "C",
+      "grupo": "B",
       "id": 25
     },
     {
-      "nombre": "a",
+      "nombre": "Andresoereasdeasfdqwf",
       "grupo": "B",
       "id": 26
     },
@@ -119,6 +109,16 @@
       "nombre": "a",
       "grupo": "B",
       "id": 27
+    },
+    {
+      "nombre": "aaaa",
+      "grupo": "B",
+      "id": 28
+    },
+    {
+      "nombre": "Andres",
+      "grupo": "B",
+      "id": 29
     }
   ],
   "grupos": [
