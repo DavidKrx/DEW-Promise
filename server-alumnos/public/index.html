@@ -9,45 +9,54 @@
 <body>
     <h1>Lista de Alumnos</h1>
     <div class="all">
-    <table border="1" id="tabla">
+    <table>
       <thead>
         <tr>
           <th>ID</th>
           <th>Nombre</th>
           <th>Grupo</th>
-          <th>Acciones</th>
         </tr>
       </thead>
-      <tbody>
-      
+      <tbody id="tabla">
+    
       </tbody>
     </table>
-  
+
     <div class="actions">
-    <h2>Crear Alumno</h2>
-    <form id="formCrear">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" required>
-      <label for="grupo">Grupo:</label>
-      <select id="grupo" required>
-        <!-- Las opciones de los grupos se cargarán aquí -->
-      </select>
-      <button type="submit">Crear</button>
-    </form>
+      <div class="form-row">
+          <label for="inputId">Id:</label>
+          <input type="text" id="inputId" size="5" pattern="[0-9]" >
+      </div>
+      <span class="error" id="errorID"></span>
   
-    <!-- Formulario de Editar Alumno -->
-    <h2>Editar Alumno</h2>
-    <form id="formEditar" style="display: none;">
-      <label for="editNombre">Nombre:</label>
-      <input type="text" id="editNombre" required>
-      <label for="editGrupo">Grupo:</label>
-      <select id="editGrupo" required>
-        <!-- Las opciones de los grupos se cargarán aquí -->
-      </select>
-      <input type="hidden" id="editId">
-      <button type="submit">Actualizar</button>
-    </form>
-    </div>
+      <div class="form-row">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" size="15">
+      </div>
+      <span class="error" id="errorNombre"></span>
+  
+      <div class="form-row">
+          <label for="grupo">Grupo:</label>
+          <select id="grupo">
+            <option value="" default>Elige un grupo</option>
+          </select>
+      </div>
+      <span class="error" id="errorGrupo"></span>
+  
+      <div class="form-row buttons">
+          <button onclick="Crear()">Crear</button>
+          <button onclick="Editar()">Editar</button>
+      </div>
+  
+      <span class="error" id="errorIdDelete"></span>
+  
+      <div class="form-row">
+          <label for="idDelete">Id:</label>
+          <input type="text" id="idDelete" size="5">
+          <button onclick="Borrar()">Borrar</button>
+      </div>
+  </div>
+
 </div>
     <script src="script.js"></script>
 </body>

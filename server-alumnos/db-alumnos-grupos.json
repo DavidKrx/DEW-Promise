@@ -1,124 +1,29 @@
 {
   "alumnos": [
     {
-      "id": 3,
-      "grupo": "B",
-      "nombre": "Ana"
+    "id": 1,
+    "grupo": "B",
+    "nombre": "David"
     },
     {
-      "id": 4,
-      "grupo": "B",
-      "nombre": "Julia"
+      "id": 2,
+      "grupo": "C",
+      "nombre": "Abdul"
     },
     {
-      "nombre": "pedro",
+      "nombre": "Pedro",
       "grupo": "A",
-      "id": 5
+      "id": 3
     },
     {
-      "nombre": "a",
-      "grupo": "B",
-      "id": 6
-    },
-    {
-      "nombre": "a",
-      "grupo": "B",
-      "id": 7
-    },
-    {
-      "nombre": "a",
-      "grupo": "B",
-      "id": 8
-    },
-    {
-      "nombre": "a",
-      "grupo": "B",
-      "id": 9
-    },
-    {
-      "nombre": "pedro",
+      "nombre": "María",
       "grupo": "A",
-      "id": 10
-    },
-    {
-      "nombre": "pedro",
-      "grupo": "A",
-      "id": 11
-    },
-    {
-      "nombre": "a",
-      "grupo": "B",
-      "id": 12
-    },
-    {
-      "nombre": "a",
-      "grupo": "B",
-      "id": 13
-    },
-    {
-      "nombre": "a",
-      "grupo": "B",
-      "id": 14
-    },
-    {
-      "nombre": "a",
-      "grupo": "B",
-      "id": 16
-    },
-    {
-      "nombre": "a",
-      "grupo": "B",
-      "id": 17
-    },
-    {
-      "nombre": "a",
-      "grupo": "B",
-      "id": 19
+      "id": 4
     },
     {
       "nombre": "Juan",
       "grupo": "B",
-      "id": 20
-    },
-    {
-      "nombre": "a",
-      "grupo": "B",
-      "id": 22
-    },
-    {
-      "nombre": "a",
-      "grupo": "B",
-      "id": 23
-    },
-    {
-      "nombre": "Pedro",
-      "grupo": "B",
-      "id": 24
-    },
-    {
-      "nombre": "Abdul",
-      "grupo": "B",
-      "id": 25
-    },
-    {
-      "nombre": "Andresoereasdeasfdqwf",
-      "grupo": "B",
-      "id": 26
-    },
-    {
-      "nombre": "a",
-      "grupo": "B",
-      "id": 27
-    },
-    {
-      "nombre": "aaaa",
-      "grupo": "B",
-      "id": 28
-    },
-    {
-      "nombre": "Andres",
-      "grupo": "B",
-      "id": 29
+      "id": 5
     }
   ],
   "grupos": [
@@ -129,6 +34,10 @@
     {
       "id": 2,
       "grupo": "B"
+    },
+    {
+      "id": 3,
+      "grupo": "C"
     }
   ]
 }

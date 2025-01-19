@@ -1,139 +1,240 @@
-    const result = document.getElementById('result');
-    const tabla = document.getElementById('tabla').getElementsByTagName('tbody')[0];
-    const formCrear = document.getElementById('formCrear');
-    const formEditar = document.getElementById('formEditar');
-    const editId = document.getElementById('editId');
-    const editNombre = document.getElementById('editNombre');
-    const editGrupo = document.getElementById('editGrupo');
+    const DOM={
+      tabla:document.getElementById('tabla'),
+      inputId:document.getElementById('inputId'),
+      nombre:document.getElementById('nombre'),
+      grupo:document.getElementById('grupo'),
 
-    // Leer los alumnos desde el servidor y mostrar en la tabla
-    function listarAlumnos() {
-      fetch('http://localhost:3000/alumnos')
-        .then(response => response.json())
-        .then(alumnos => {
-          tabla.innerHTML = ''; // Limpiar la tabla
-          alumnos.forEach(alumno => {
-            const tr = document.createElement("tr");
+      idDelete:document.getElementById('idDelete'),
 
-            let id = document.createElement("td");
-            id.textContent = alumno.id;
-
-            let nombre = document.createElement("td");
-            nombre.textContent = alumno.nombre;
-
-            let grupo = document.createElement("td");
-            grupo.textContent = alumno.grupo;
-
-            let acciones = document.createElement("td");
-
-            // Botón Editar
-            const btnEditar = document.createElement("button");
-            btnEditar.textContent = "Editar";
-            btnEditar.onclick = () => editarAlumno(alumno.id, alumno.nombre, alumno.grupo);
-            acciones.appendChild(btnEditar);
-
-            // Botón Eliminar
-            const btnEliminar = document.createElement("button");
-            btnEliminar.textContent = "Eliminar";
-            btnEliminar.onclick = () => eliminarAlumno(alumno.id);
-            acciones.appendChild(btnEliminar);
-
-            tr.append(id, nombre, grupo, acciones);
-            tabla.append(tr);
-          });
-        })
-        .catch(error => console.error(error));
-    }
-
-    // Crear un nuevo alumno
-    formCrear.addEventListener('submit', function(event) {
-      event.preventDefault();
-      const nombre = document.getElementById('nombre').value;
-      const grupo = document.getElementById('grupo').value;
-      const nuevoAlumno = { nombre, grupo };
-
-      fetch('http://localhost:3000/alumnos', {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(nuevoAlumno)
-      })
-        .then(response => response.json())
-        .then(() => {
-          listarAlumnos(); // Recargar la lista de alumnos
-          formCrear.reset(); // Limpiar formulario
-        })
-        .catch(error => console.error(error));
+      errorId:document.getElementById('errorId'),
+      errorNombre:document.getElementById('errorNombre'),
+      errorGrupo:document.getElementById('errorGrupo'),
+      
+      errorIdDelete:document.getElementById('errorIdDelete')
+    };
+    function mostrarTabla(){
+    fetch('http://localhost:3000/alumnos').then(response=>response.json())
+    .then(respuestaFormat=> {
+      jsonData=JSON.stringify(respuestaFormat);
+      tabla.innerHTML = '';
+      respuestaFormat.map((alumnos) => {
+        let id=document.createElement("td");
+        id.textContent=alumnos.id;
+    
+        let nombre=document.createElement("td");
+        nombre.textContent=alumnos.nombre;
+    
+        let grupo=document.createElement("td");
+        grupo.textContent=alumnos.grupo;
+    
+        let tr=document.createElement("tr");
+        tr.append(id);
+        tr.append(nombre);
+        tr.append(grupo);
+    
+        tabla.append(tr);
+      });
+    })
+    .catch(error => {
+      console.error(error);
     });
+  }
 
-    // Editar un alumno
-    function editarAlumno(id, nombre, grupo) {
-      formEditar.style.display = 'block'; // Mostrar formulario de editar
-      editId.value = id;
-      editNombre.value = nombre;
-      editGrupo.value = grupo;
-    }
+  function limpiarFormulario(){
+    DOM.inputId.value="";
+    DOM.nombre.value="";
+    DOM.grupo.value="";
+    DOM.errorIdDelete.value="";
+  }
 
-    formEditar.addEventListener('submit', function(event) {
-      event.preventDefault();
-      const id = editId.value;
-      const nombre = editNombre.value;
-      const grupo = editGrupo.value;
-
-      const datosActualizar = { nombre, grupo };
-
-      fetch(`http://localhost:3000/alumnos/${id}`, {
-        method: 'PUT',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(datosActualizar)
-      })
-        .then(response => response.json())
-        .then(() => {
-          listarAlumnos(); // Recargar la lista de alumnos
-          formEditar.reset(); // Limpiar formulario
-          formEditar.style.display = 'none'; // Ocultar formulario de editar
-        })
-        .catch(error => console.error(error));
-    });
-
-    // Eliminar un alumno
-    function eliminarAlumno(id) {
-      if (confirm('¿Estás seguro de que deseas eliminar este alumno?')) {
-        fetch(`http://localhost:3000/alumnos/${id}`, {
-          method: 'DELETE',
-          headers: { "Content-Type": "application/json" }
-        })
-          .then(response => response.json())
-          .then(() => {
-            listarAlumnos(); // Recargar la lista de alumnos
-          })
-          .catch(error => console.error(error));
-      }
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-      // Cargar los grupos desde la API
-      fetch('http://localhost:3000/grupos')
+    fetch('http://localhost:3000/grupos')
           .then(response => response.json())
           .then(grupos => {
-              // Llenar el select de grupos en el formulario de crear
-              const grupoSelectCrear = document.getElementById('grupo');
-              const grupoSelectEditar = document.getElementById('editGrupo');
+              const grupoSelect = document.getElementById('grupo');
               
               grupos.forEach(grupo => {
-                  // Crear la opción para el select
+                  // Creating select option
                   const option = document.createElement('option');
                   option.value = grupo.grupo;
                   option.textContent = grupo.grupo;
-  
-                  // Añadir al select de crear
-                  grupoSelectCrear.appendChild(option);
-  
-                  // Añadir al select de editar
-                  grupoSelectEditar.appendChild(option.cloneNode(true)); // Clonar la opción para editar
+
+                  grupoSelect.appendChild(option);
               });
           })
           .catch(error => console.error('Error al cargar los grupos:', error));
-  
-      // Aquí puedes añadir el resto de tu lógica para crear, editar y eliminar alumnos
+    
+    function Crear(){
+      if(DOM.inputId.value=="" && !DOM.nombre.value=="" && !DOM.grupo.value==""){
+        Create(DOM.nombre.value,DOM.grupo.value);
+        DOM.errorNombre.textContent="";
+        DOM.errorGrupo.textContent="";
+      } else{
+        if(DOM.nombre.value==""){ DOM.errorNombre.textContent="Error";}
+        if(!DOM.inputId.value==""){ DOM.errorGrupo.textContent="El id tiene que estar vacio";}
+        if(DOM.grupo.value==""){ DOM.errorGrupo.textContent="Error";}
+      }
+    }
+        let alumnosData = []; // Inicializar como un array vacío
+        // Función para obtener el nombre del alumno por ID
+// Obtener los datos con fetch y guardarlos
+fetch('http://localhost:3000/alumnos')
+  .then(response => response.json())
+  .then(respuestaFormat => {
+    alumnosData = respuestaFormat; // Guardar directamente como un array
+    console.log('Datos cargados:', alumnosData);
+  })
+  .catch(error => {
+    console.error('Error al obtener los datos:', error);
   });
+    
+    function Editar(){
+      if (!DOM.inputId.value==""){
+
+        function filtrarPorId(id) {
+          if (Array.isArray(alumnosData) && alumnosData.length > 0) {
+            const alumno = alumnosData.find(alumno => alumno.id == id);
+            if (alumno) {
+              console.log(`Nombre del alumno con ID ${id}:`, alumno.nombre);
+              return alumno.id; // Retornar el nombre del alumno
+            } else {
+              console.log(`No se encontró ningún alumno con ID ${id}`);
+              return null;
+            }
+          } else {
+            console.log('No hay datos cargados aún.');
+            return null;
+          }
+        }
+
+        if(filtrarPorId(DOM.inputId.value)==DOM.inputId.value && !DOM.nombre.value=="" && !DOM.grupo.value==""){
+          let DatosCrear={
+            id:DOM.inputId.value,
+            nombre:DOM.nombre.value,
+            grupo:DOM.grupo.value
+          }
+          UpdatePath(DatosCrear);
+          console.log("Update");
+          DOM.errorNombre.textContent="";
+          DOM.errorGrupo.textContent="";
+        } else{
+          if(filtrarPorId(DOM.inputId.value)==DOM.inputId.value && !DOM.nombre.value=="" && DOM.grupo.value==""){
+            let DatosCrear={
+              id:DOM.inputId.value,
+              nombre:DOM.nombre.value,
+            }
+            
+            UpdatePath(DatosCrear);
+            console.log("Update");
+            DOM.errorNombre.textContent="";
+            DOM.errorGrupo.textContent="";
+          } else{
+            if(DOM.nombre.value=="" && DOM.grupo.value==""){ DOM.errorNombre.textContent="Tiene que rellenar 1 de los campos: nombre o grupo";}
+            if(filtrarPorId(DOM.inputId.value)!=DOM.inputId.value){ DOM.errorGrupo.textContent="El id tiene que existir en la tabla";}
+          }
   
-    listarAlumnos();
+          if(filtrarPorId(DOM.inputId.value)==DOM.inputId.value && DOM.nombre.value=="" && !DOM.grupo.value==""){
+            let DatosCrear={
+              id:DOM.inputId.value,
+              grupo:DOM.grupo.value
+            }
+            UpdatePath(DatosCrear);
+            console.log("Update");
+            DOM.errorNombre.textContent="";
+            DOM.errorGrupo.textContent="";
+          } else{
+            if(DOM.nombre.value=="" && DOM.grupo.value==""){ DOM.errorNombre.textContent="Tiene que rellenar 1 de los campos: nombre o grupo";}
+            if(filtrarPorId(DOM.inputId.value)!=DOM.inputId.value){ DOM.errorGrupo.textContent="El id tiene que existir en la tabla";}
+          }
+        }
+
+      } else {
+        DOM.errorGrupo.textContent="El id no puede estar vacio";
+      }
+    }
+
+    function Create(Name,Grupo){
+      let DatosCrear={
+        nombre:Name,
+        grupo:Grupo
+      }
+      fetch('http://localhost:3000/alumnos', {
+        method: 'POST',
+        headers:{
+          "Content-type":"application/json"
+        },
+        body:JSON.stringify(DatosCrear)
+      })
+      .then(response=>response.json()).catch(error => {
+        console.error(error);
+      })
+      .then(a=>{
+        mostrarTabla();
+        limpiarFormulario();})
+    }
+    //Modifica parcialmente el objeto
+    function UpdatePath(DatosCrear){
+      fetch('http://localhost:3000/alumnos/'+DatosCrear.id, {
+        method: 'PATCH',
+        headers:{
+          "Content-type":"application/json"
+        },
+        body:JSON.stringify(DatosCrear)
+      })
+      .then(response=>response.json()).catch(error => {
+        console.error(error);
+      })
+      .then(a=>{
+        mostrarTabla();
+        limpiarFormulario();})
+    }
+    
+
+    function Borrar(){
+      if (!DOM.idDelete.value==""){
+
+        function filtrarPorId(id) {
+          if (Array.isArray(alumnosData) && alumnosData.length > 0) {
+            const alumno = alumnosData.find(alumno => alumno.id == id);
+            if (alumno) {
+              console.log(`Nombre del alumno con ID ${id}:`, alumno.nombre);
+              return alumno.id; // Retornar el nombre del alumno
+            } else {
+              console.log(`No se encontró ningún alumno con ID ${id}`);
+              return null;
+            }
+          } else {
+            console.log('No hay datos cargados aún.');
+            return null;
+          }
+        }
+
+        if(filtrarPorId(DOM.idDelete.value)==DOM.idDelete.value){
+          Delete(DOM.idDelete.value);
+          DOM.errorIdDelete.textContent="";
+        } else {
+          DOM.errorIdDelete.textContent="El id tiene que existir en la tabla";
+        }
+        }
+        else {
+          DOM.errorIdDelete.textContent="El id no puede estar vacio";
+        }
+    }
+
+    function Delete(id){
+      if (confirm('¿Estás seguro de que deseas eliminar este alumno?')) {
+      fetch('http://localhost:3000/alumnos/'+id, {
+        method: 'DELETE',
+        headers:{
+          "Content-type":"application/json"
+        },
+      })
+      .then(response=>response.json()).catch(error => {
+        console.error(error);
+      })
+      .then(a=>{
+        mostrarTabla();
+        limpiarFormulario();})
+    }
+  }
+
+    mostrarTabla();
