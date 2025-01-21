@@ -12,10 +12,13 @@
       
       errorIdDelete:document.getElementById('errorIdDelete')
     };
+
+    let alumnosData = []; // Inicializar como un array vacío     
     function mostrarTabla(){
     fetch('http://localhost:3000/alumnos').then(response=>response.json())
     .then(respuestaFormat=> {
       jsonData=JSON.stringify(respuestaFormat);
+      alumnosData = respuestaFormat;
       tabla.innerHTML = '';
       respuestaFormat.map((alumnos) => {
         let id=document.createElement("td");
@@ -35,9 +38,7 @@
         tabla.append(tr);
       });
     })
-    .catch(error => {
-      console.error(error);
-    });
+    .catch(error => console.error('Error al cargar los alumnos:', error));
   }
 
   function limpiarFormulario(){
@@ -68,28 +69,18 @@
         Create(DOM.nombre.value,DOM.grupo.value);
         DOM.errorNombre.textContent="";
         DOM.errorGrupo.textContent="";
+        DOM.errorId.textContent="";
       } else{
-        if(DOM.nombre.value==""){ DOM.errorNombre.textContent="Error";}
-        if(!DOM.inputId.value==""){ DOM.errorGrupo.textContent="El id tiene que estar vacio";}
-        if(DOM.grupo.value==""){ DOM.errorGrupo.textContent="Error";}
+        if(DOM.nombre.value==""){ DOM.errorNombre.textContent="Rellena el campo nombre";}
+        if(!DOM.inputId.value==""){ DOM.errorId.textContent="El id tiene que estar vacio";}
+        if(DOM.grupo.value==""){ DOM.errorGrupo.textContent="Selecciona un grupo";}
       }
     }
-        let alumnosData = []; // Inicializar como un array vacío
-        // Función para obtener el nombre del alumno por ID
-// Obtener los datos con fetch y guardarlos
-fetch('http://localhost:3000/alumnos')
-  .then(response => response.json())
-  .then(respuestaFormat => {
-    alumnosData = respuestaFormat; // Guardar directamente como un array
-    console.log('Datos cargados:', alumnosData);
-  })
-  .catch(error => {
-    console.error('Error al obtener los datos:', error);
-  });
-    
+   
     function Editar(){
       if (!DOM.inputId.value==""){
-
+        DOM.errorNombre.textContent="";
+        DOM.errorId.textContent="";
         function filtrarPorId(id) {
           if (Array.isArray(alumnosData) && alumnosData.length > 0) {
             const alumno = alumnosData.find(alumno => alumno.id == id);
@@ -115,7 +106,7 @@ fetch('http://localhost:3000/alumnos')
           UpdatePath(DatosCrear);
           console.log("Update");
           DOM.errorNombre.textContent="";
-          DOM.errorGrupo.textContent="";
+          DOM.errorId.textContent="";
         } else{
           if(filtrarPorId(DOM.inputId.value)==DOM.inputId.value && !DOM.nombre.value=="" && DOM.grupo.value==""){
             let DatosCrear={
@@ -126,10 +117,10 @@ fetch('http://localhost:3000/alumnos')
             UpdatePath(DatosCrear);
             console.log("Update");
             DOM.errorNombre.textContent="";
-            DOM.errorGrupo.textContent="";
+            DOM.errorId.textContent="";
           } else{
             if(DOM.nombre.value=="" && DOM.grupo.value==""){ DOM.errorNombre.textContent="Tiene que rellenar 1 de los campos: nombre o grupo";}
-            if(filtrarPorId(DOM.inputId.value)!=DOM.inputId.value){ DOM.errorGrupo.textContent="El id tiene que existir en la tabla";}
+            if(filtrarPorId(DOM.inputId.value)!=DOM.inputId.value){ DOM.errorId.textContent="El id tiene que existir en la tabla";}
           }
   
           if(filtrarPorId(DOM.inputId.value)==DOM.inputId.value && DOM.nombre.value=="" && !DOM.grupo.value==""){
@@ -140,15 +131,15 @@ fetch('http://localhost:3000/alumnos')
             UpdatePath(DatosCrear);
             console.log("Update");
             DOM.errorNombre.textContent="";
-            DOM.errorGrupo.textContent="";
+            DOM.errorId.textContent="";
           } else{
             if(DOM.nombre.value=="" && DOM.grupo.value==""){ DOM.errorNombre.textContent="Tiene que rellenar 1 de los campos: nombre o grupo";}
-            if(filtrarPorId(DOM.inputId.value)!=DOM.inputId.value){ DOM.errorGrupo.textContent="El id tiene que existir en la tabla";}
+            if(filtrarPorId(DOM.inputId.value)!=DOM.inputId.value){ DOM.errorId.textContent="El id tiene que existir en la tabla";}
           }
         }
 
       } else {
-        DOM.errorGrupo.textContent="El id no puede estar vacio";
+        DOM.errorId.textContent="El id no puede estar vacio";
       }
     }
 
