@@ -19,7 +19,7 @@
     .then(respuestaFormat=> {
       jsonData=JSON.stringify(respuestaFormat);
       alumnosData = respuestaFormat;
-      tabla.innerHTML = '';
+      DOM.tabla.innerHTML = '';
       respuestaFormat.map((alumnos) => {
         let id=document.createElement("td");
         id.textContent=alumnos.id;

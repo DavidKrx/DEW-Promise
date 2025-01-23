@@ -21,9 +21,14 @@
       "id": 4
     },
     {
-      "nombre": "Juan",
-      "grupo": "B",
+      "nombre": "David",
+      "grupo": "A",
       "id": 5
+    },
+    {
+      "nombre": "sfqwfqwf",
+      "grupo": "C",
+      "id": 6
     }
   ],
   "grupos": [
